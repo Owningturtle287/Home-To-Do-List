@@ -2,6 +2,10 @@
 
 Roomstead is a mobile-first checklist for home projects. Open a room to check off items and see its progress, or use the Shopping tab to check off purchases across all rooms.
 
+## Download the offline app
+
+Open [Package Roomstead](https://github.com/Owningturtle287/Home-To-Do-List/actions/workflows/package.yml) in GitHub Actions, select a successful run, and download the **Roomstead** artifact. Unzip it and open `Roomstead.html` in a desktop browser. The download includes the sample checklist, with its own saved progress.
+
 ## Run locally
 
 Serve the project folder with Python 3 and open the URL below.
