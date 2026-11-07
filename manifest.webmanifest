@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "Roomstead · Home Checklist",
+  "short_name": "Roomstead",
+  "description": "Plan and track your home checklist, one room at a time.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8f6f0",
+  "theme_color": "#f8f6f0",
+  "icons": [
+    {"src": "assets/app-icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "assets/app-icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "assets/app-icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable"}
+  ]
+}

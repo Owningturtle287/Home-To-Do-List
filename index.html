@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f6f0">
+  <meta name="description" content="A room-by-room checklist for a home in the making.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Roomstead · Home Checklist</title>
+  <link rel="icon" href="./assets/app-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./assets/app-icon-192.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main-content">Skip to content</a>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="#rooms">
+        <img src="./assets/app-icon.svg" width="40" height="40" alt="">
+        <span>Roomstead<small>HOME CHECKLIST</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Main"></nav>
+      <div class="sidebar-note">
+        <span class="note-icon" aria-hidden="true">✧</span>
+        <span>Your checklist is saved on this device.</span>
+      </div>
+    </aside>
+    <header class="mobile-header">
+      <a class="brand" href="#rooms">
+        <img src="./assets/app-icon.svg" width="38" height="38" alt="">
+        <span>Roomstead<small>HOME CHECKLIST</small></span>
+      </a>
+      <div class="mobile-action"></div>
+    </header>
+    <main id="main-content" tabindex="-1"></main>
+    <nav class="mobile-nav" aria-label="Main"></nav>
+  </div>
+  <dialog id="editor" aria-labelledby="editor-title"></dialog>
+  <div id="announcement" class="toast" role="status"></div>
+  <noscript>Roomstead needs JavaScript to manage your checklist.</noscript>
+</body>
+</html>
