@@ -20,6 +20,8 @@ permissions:
 
 jobs:
   package:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -35,3 +37,23 @@ jobs:
           path: output/Roomstead.html
           if-no-files-found: error
           retention-days: 90
+
+      - name: Publish a direct ZIP download
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python3 -m zipfile -c output/Roomstead.zip output/Roomstead.html
+          tag="roomstead-build-${GITHUB_RUN_NUMBER}"
+          if ! gh release view "$tag" --json url >/dev/null 2>&1; then
+            gh release create "$tag" output/Roomstead.zip \
+              --target "$GITHUB_SHA" \
+              --title "Roomstead download #${GITHUB_RUN_NUMBER}" \
+              --notes "Offline web app with the sample checklist. Extract Roomstead.zip and open Roomstead.html in a desktop browser." \
+              --latest=false
+          fi
+          gh release view "$tag" --json assets,isDraft \
+            --jq 'select(.isDraft == false) | .assets[].name' | grep -Fx 'Roomstead.zip'
+          download="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/$tag/Roomstead.zip"
+          printf '## Download Roomstead\n\n**[Download Roomstead.zip](%s)**\n\nUnzip it and open `Roomstead.html` in a desktop browser.\n' "$download" >> "$GITHUB_STEP_SUMMARY"
