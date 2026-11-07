@@ -1,4 +1,5 @@
 name: Package Roomstead
+run-name: Download Roomstead.zip
 
 on:
   workflow_dispatch:
@@ -22,7 +23,7 @@ jobs:
   package:
     permissions:
       contents: write
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -56,4 +57,5 @@ jobs:
           gh release view "$tag" --json assets,isDraft \
             --jq 'select(.isDraft == false) | .assets[].name' | grep -Fx 'Roomstead.zip'
           download="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/$tag/Roomstead.zip"
+          printf '::notice title=Download Roomstead.zip::%s\n' "$download"
           printf '## Download Roomstead\n\n**[Download Roomstead.zip](%s)**\n\nUnzip it and open `Roomstead.html` in a desktop browser.\n' "$download" >> "$GITHUB_STEP_SUMMARY"
