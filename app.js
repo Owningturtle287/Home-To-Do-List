@@ -1,8 +1,9 @@
-import { seed } from './seed.js';
+import { seed, sampleTaskNames } from './seed.js?v=2';
 import { art, roomIcon, symbol } from './icons.js';
-import { freshChecklist, measure, roomTasks } from './model.js';
+import { freshChecklist, measure, roomTasks, upgradeSampleChecklist } from './model.js?v=2';
 
-const storageKey = 'roomstead.checklist.v1';
+const storageKey = 'roomstead.checklist.v2';
+const sampleStorageKey = 'roomstead.checklist.v1';
 const main = document.querySelector('main');
 const dialog = document.querySelector('#editor');
 const toast = document.querySelector('#announcement');
@@ -20,6 +21,8 @@ function loadChecklist() {
   try {
     const saved = localStorage.getItem(storageKey);
     if (saved) return JSON.parse(saved);
+    const sample = localStorage.getItem(sampleStorageKey);
+    if (sample) return upgradeSampleChecklist(JSON.parse(sample), seed, sampleTaskNames);
   } catch {
     // A blocked or unreadable store still allows an in-memory session.
   }
